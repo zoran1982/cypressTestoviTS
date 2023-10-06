@@ -1,0 +1,34 @@
+/* tsconfig.json is a configuration file used by the TypeScript compiler,
+ to specify how TypeScript code should be compiled into JavaScript code. */
+
+{
+  "compilerOptions": {
+    "target": "ESNext", //specifies the version of ECMAScript (JavaScript) that the TypeScript compiler should target when converting JavaScript files.
+    "module": "CommonJS", //specifies the module code generation method that the TypeScript compiler should use when converting JavaScript files.
+    "lib": ["ESNext", "DOM"], //specifies the libraries that should be included in the compilation process.
+    "types": ["cypress", "node"], //specifies the type definition files that should be included in the compilation process.
+    "strict": true, //enables strict type checking and additional type-related rules.
+    "esModuleInterop": true /* enables interoperability between CommonJS and ES6 modules.When set to true, 
+      it allows you to use imports and exports in TypeScript with CommonJS-style modules, which is the module system used by Node.js. */,
+    "skipLibCheck": true, //skips type checking of all declaration files (*.d.ts) during compilation.
+    "forceConsistentCasingInFileNames": true, //ensures that file names are consistent across platforms.
+    "sourceMap": true /* This option generates a source map for each compiled TypeScript file. 
+      A source map, maps the compiled JavaScript code back to the original TypeScript code, which can be helpful for debugging. 
+      With a source map, you can set breakpoints and step through the original TypeScript code in the debugger. */,
+    "moduleResolution": "node" /* determines how TypeScript resolves module imports. 
+      When set to "node", TypeScript uses the Node.js module resolution algorithm to find and load modules */,
+    "resolveJsonModule": true,
+    //"noImplicitAny": true,
+    "baseUrl": "./", //specifies the base path for all relative module imports.
+    "paths": {
+      //specifies a mapping of module names to paths relative to the baseUrl.
+      "@support/*": ["cypress/support/*"],
+      "@fixtures/*": ["cypress/fixtures/*"],
+      "@interfaces/*": ["cypress/interfaces/*"],
+      "@functions/*": ["cypress/functions/*"]
+    }
+  },
+
+  "include": ["**/*.ts"], //an array of file or directory paths that should be included in the compilation.
+  "exclude": ["node_modules"] // specifies which files to exclude from the compilation process
+}

@@ -1,0 +1,23 @@
+{
+  "name": "cypressautomationts",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cy_open":"npx cypress open",
+    "cy_run":"npx cypress run"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@bahmutov/cypress-esbuild-preprocessor": "^2.2.0",
+    "@typescript-eslint/eslint-plugin": "^6.7.2",
+    "@typescript-eslint/parser": "^6.7.2",
+    "cypress": "^13.2.0",
+    "eslint": "^8.49.0",
+    "eslint-plugin-cypress": "^2.15.1",
+    "typescript": "^5.2.2"
+  }
+}

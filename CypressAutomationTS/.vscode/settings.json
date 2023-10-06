@@ -1,0 +1,19 @@
+{
+  "editor.quickSuggestions": {
+    "comments": false,
+    "strings": true,
+    "other": true
+  },
+
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.formatOnPaste": false,
+  "editor.formatOnType": false,
+  "editor.formatOnSave": true,
+  "editor.formatOnSaveMode": "file",
+  "files.autoSave": "onFocusChange",
+  "prettier.singleQuote": true,
+  "prettier.arrowParens": "always",
+  "prettier.trailingComma": "all",
+  "prettier.printWidth": 120,
+  "cSpell.words": ["Plix"]
+}
