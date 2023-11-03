@@ -1,83 +1,79 @@
-import 'cypress-file-upload'
-describe('registration_suite',()=>{
-let userdata;
-    beforeEach('homePage',()=>{
-        cy.fixture('ePlixDataRegistration').then((data)=>{
-         userdata = data;
-        });
-        cy.visit("https://app-qa.eplix.ch/en_GB/auth/login");
-      });
+import login_1 from '@support/pom/login_pageEplix';
+import reg from '@support/pom/registrationEplix';
 
-it.only('happy_case',()=>{
- 
-    cy.get('[data-cy="btn_signup"]').click();
-    cy.get('[data-cy="loading_btn_wizard_navigation_next"]').click();
+describe('registration_suite', () => {
+  beforeEach('homePage', () => {
+    login_1.openLoginPageEplix();
+  });
 
-    //enter credentials
-    cy.wait(5000);
-    cy.get('input[name="phone_number"]').type(userdata[0].username);
-    cy.get('input[name="password"]').type(userdata[0].password);
+  it.only('happy_case', () => {
+    reg.registar_now();
+    reg.next_btn();
+    cy.wait(3000);
+    reg.enter_username_field();
+    reg.enter_password_field();
+    reg.radio_btn1();
+    reg.radio_btn2();
+    cy.wait(6000);
+    reg.next_btn();
+    reg.enter_sms_code();
+    reg.next_btn();
+    //reg.choose_documents();
+    reg.upload_document_front(document);
+    reg.next_btn();
+    cy.wait(2000);
+    reg.enter_ssn();
+    reg.enter_email();
+    reg.enter_date_of_issue();
+    reg.next_btn();
+    reg.confirm_btn();
+  });
 
-     
-    //radion buttons
-    cy.get(':nth-child(4) > .switch_inputWrapper__uOceJ > .switch_slider__kQqNp').click();
-    cy.get(':nth-child(5) > .switch_inputWrapper__uOceJ > .switch_slider__kQqNp').click();
+  // attach file 1 approach
 
-    cy.get('[data-cy="loading_btn_wizard_navigation_next"]').click();
-     
-    //sms field
-    cy.get('input[name="sms_code"]').type(userdata[0].SmsCode);
-    cy.contains('Next').click();
+  /*const filePath = 'belgija.png';
 
-    // attach file 1 approach
-  
-    const filePath = 'belgija.png';
-    
-   // cy.get(':nth-child(5) > [data-cy="btn_registration_upload_document"]')
-   // .attachFile(filePath,{subjectType: 'drag-n-drop'});
+    // cy.get(':nth-child(5) > [data-cy="btn_registration_upload_document"]')
+    // .attachFile(filePath,{subjectType: 'drag-n-drop'});
 
     // select file 2 approach
 
-    cy.get(':nth-child(5) > [data-cy="btn_registration_upload_document"]')
-    .selectFile(('cypress/fixtures/belgija.png'), {action: 'drag-drop'});
+    cy.get(':nth-child(5) > [data-cy="btn_registration_upload_document"]').selectFile('cypress/fixtures/belgija.png', { action: 'drag-drop' });
 
     // next button
 
     cy.get('[data-cy="loading_btn_wizard_navigation_next"]').click();
-    
+
     // insert SSN
     cy.get('[data-cy="social_security_number"]').type(userdata[0].SSN_1);
-    
 
     // insert email
     cy.get('[data-cy="email"]').type(userdata[0].email);
-    
+
     // date of issue
-    cy.wait(2000)
-    cy.get('[data-cy="date_of_issue"]').click()
-    cy.get(':nth-child(2) > :nth-child(1) > .MuiButtonBase-root').click()
-    
-    cy.wait(2000)
-   
+    cy.wait(2000);
+    cy.get('[data-cy="date_of_issue"]').click();
+    cy.get(':nth-child(2) > :nth-child(1) > .MuiButtonBase-root').click();
+
+    cy.wait(2000);
+
     // Next button
     cy.get('[data-cy="loading_btn_wizard_navigation_next"]').click();
 
     // Confirm button
     cy.get('[data-cy="loading_btn_document_info_overview_confirm"]').click();
 
-    //validation 
-    cy.get('.w-\[200px\]').should('be.visible');
+    //validation
+    cy.get('.w-[200px]').should('be.visible');
     cy.get('.object-contain').should('be.visible');
-    cy.get('.typography-prop_regular600__0etNq').should('have.text','Welcome to ePlix!');
+    cy.get('.typography-prop_regular600__0etNq').should('have.text', 'Welcome to ePlix!');
 
     //bulb text
     cy.get('.pt-1').click().scrollIntoView();
-    cy.get('.mt-2\.5 > .flex > .typo_base__QxhEO').should('be.visible');
+    cy.get('.mt-2.5 > .flex > .typo_base__QxhEO').should('be.visible');
+  }); */
 
-      
-});
-
-it('empty_SSN_validation_message',()=>{
+  /* it('empty_SSN_validation_message',()=>{
  
     cy.get('[data-cy="btn_signup"]').click();
     cy.get('[data-cy="loading_btn_wizard_navigation_next"]').click();
@@ -623,6 +619,5 @@ it('Registration_page_password_requirementsField',()=>{
                 //visibility login page
                 cy.get('.justify-start').should('be.visible');
                   
-            });
-
+            }); */
 });
